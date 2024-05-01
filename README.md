@@ -27,6 +27,8 @@ NOTE: this method get some errors
 ### Pipeline
 - To run pipeline:
 ```bash
-python3 pipeline.py
+python3 pipeline.py \
+--recording_path sample.webm \
+--method paddleocr \
+--step 5
 ```
-
