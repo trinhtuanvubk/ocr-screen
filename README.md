@@ -22,7 +22,7 @@ git clone https://github.com/open-mmlab/mmocr.git
 cd mmocr
 mim install -e .
 ```
-NOTE: this method get some errors
+NOTE: this method is not available
 
 ### Pipeline
 - To run pipeline:
