@@ -1,7 +1,7 @@
 import cv2
 import os
 # Path to the WebM file
-webm_file = "sample.webm"
+webm_file = "../sample.webm"
 
 # Open the WebM file
 video_capture = cv2.VideoCapture(webm_file)
@@ -29,7 +29,7 @@ while True:
     frame_count += 1
     
     if frame_count%100==0:
-        cv2.imwrite(os.path.join("frames", f"{frame_count}.jpg"), frame)
+        cv2.imwrite(os.path.join("../frames_test", f"{frame_count}.jpg"), frame)
 
     # Wait for 25 milliseconds. You can adjust this value to change the playback speed.
     # Press 'q' to exit the loop

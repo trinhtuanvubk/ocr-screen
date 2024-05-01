@@ -17,7 +17,8 @@ python3 paddleocr_test.py
 ### MMOCR
 - To install:
 ```bash
+pip install openmim
 git clone https://github.com/open-mmlab/mmocr.git
 cd mmocr
-pip install -e .
+mim install -e .
 ```
