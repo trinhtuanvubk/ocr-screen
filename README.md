@@ -22,3 +22,11 @@ git clone https://github.com/open-mmlab/mmocr.git
 cd mmocr
 mim install -e .
 ```
+NOTE: this method get some errors
+
+### Pipeline
+- To run pipeline:
+```bash
+python3 pipeline.py
+```
+
