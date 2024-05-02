@@ -33,6 +33,12 @@ def pipeline(args):
     
     # Read frames
     video_path = args.recording_path
+    
+    # Create frames folder
+    video_name = video_path.rsplit("/",1)[-1].rsplit(".",1)[-1]
+    frames_folder = os.path.join("frames", f"{video_name}")
+    os.makedirs(frames_folder, exist_ok=True)
+    
     video_capture = cv2.VideoCapture(video_path)
     # Check if the video file was successfully opened
     if not video_capture.isOpened():
@@ -53,6 +59,10 @@ def pipeline(args):
         # Check step
         if frame_count % args.step==0:
             print(f"======Processing frame {frame_count}======")
+            # Save the frames
+            frame_path = os.path.join(frames_folder, f"{frame_count}.jpg")
+            cv2.imwrite(frame_path, frame)
+            
             # Get boxes, txts
             boxes, txts = ocr(frame, paddleocr)
             print(txts)
@@ -66,7 +76,6 @@ def pipeline(args):
         if cv2.waitKey(25) & 0xFF == ord('q'):
             break
     # Save DataFrame to Excel
-    video_name = video_path.rsplit("/",1)[-1].rsplit(".",1)[-1]
     excel_path = os.path.join("results_excel", f"{video_name}.xlsx")
     df.to_excel(excel_path, index=False)
     # Release the VideoCapture object and close all windows

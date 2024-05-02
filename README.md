@@ -11,6 +11,7 @@ pip install "paddleocr>=2.0.1
 
 - Run a test:
 ```bash
+cd test
 python3 paddleocr_test.py
 ```
 

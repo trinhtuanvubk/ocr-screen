@@ -29,7 +29,7 @@ while True:
     frame_count += 1
     
     if frame_count%100==0:
-        cv2.imwrite(os.path.join("../frames_test", f"{frame_count}.jpg"), frame)
+        cv2.imwrite(os.path.join("../test/frames_test", f"{frame_count}.jpg"), frame)
 
     # Wait for 25 milliseconds. You can adjust this value to change the playback speed.
     # Press 'q' to exit the loop
