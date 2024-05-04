@@ -35,5 +35,6 @@ python3 pipeline.py \
 ```
 
 Where:
-    - `method`: currently supports `paddle_ocr` or `damo_ocr`
-    - `step`: is frame step 
+
+    -`method`: currently supports `paddle_ocr` or `damo_ocr`
+    -`step`: is frame step 
