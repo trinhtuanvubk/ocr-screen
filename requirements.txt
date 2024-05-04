@@ -3,3 +3,9 @@ torchvision==0.15.2
 opencv-python
 opencv-contrib-python
 pandas
+
+
+modelscope
+ipdb
+pyclipper
+tensorflow==2.12

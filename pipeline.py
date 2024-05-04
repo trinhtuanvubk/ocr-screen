@@ -3,30 +3,29 @@ import cv2
 import argparse
 import pandas as pd
 
+from scenario.damo_ocr.damo_ocr_pl import damo_ocr_init, damo_ocr_pl
+from scenario.paddle_ocr.paddle_ocr_pl import paddle_ocr_init, paddle_ocr_pl
+
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--recording_path", type=str, default="sample.webm")
-    parser.add_argument("--method", type=str, default="paddleocr")
-    parser.add_argument("--step", type=int, default=400, help="frame step")
+    parser.add_argument("--method", type=str, default="damo_ocr",help="choose in [paddle_ocr, damo_ocr]")
+    parser.add_argument("--step", type=int, default=800, help="frame step")
     args = parser.parse_args()
     
     return args
 
-def ocr(image, paddleocr):
-    result = paddleocr.ocr(image, cls=True)
-    result = result[0]
-    boxes = [line[0] for line in result]
-    txts = [line[1][0] for line in result]
-    
-    return boxes, txts
-
-
 def pipeline(args):
     
     # Init method
-    if args.method=="paddleocr":
-        from paddleocr import PaddleOCR
-        paddleocr = PaddleOCR(use_angle_cls=True, lang='en')
+    if args.method=="paddle_ocr":
+        ocr_reader = paddle_ocr_init()
+        ocr_pl = paddle_ocr_pl
+    elif args.method=="damo_ocr":
+        ocr_reader = damo_ocr_init()
+        ocr_pl = damo_ocr_pl
+    else:
+        print("this method is not availabel")
         
     # Init df
     df = pd.DataFrame(columns=['Frame_ID', 'Boxes', 'Txts'])
@@ -64,7 +63,7 @@ def pipeline(args):
             cv2.imwrite(frame_path, frame)
             
             # Get boxes, txts
-            boxes, txts = ocr(frame, paddleocr)
+            boxes, txts = ocr_pl(frame, ocr_reader)
             print(txts)
             # Write to df
             new_row = {"Frame_ID": frame_count, "Boxes":boxes, "Txts":txts}

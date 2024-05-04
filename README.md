@@ -1,5 +1,11 @@
 # ocr-screen
 
+# Install
+- To install common packages:
+```bash
+pip install -r requirements.txt
+```
+
 # Methods
 
 ### PaddleOCR
@@ -14,22 +20,17 @@ pip install "paddleocr>=2.0.1
 cd test
 python3 paddleocr_test.py
 ```
-
-### MMOCR
-- To install:
-```bash
-pip install openmim
-git clone https://github.com/open-mmlab/mmocr.git
-cd mmocr
-mim install -e .
-```
-NOTE: this method is not available
+<!-- Remove MMOCR pipeline because I can not install old and silly packages -->
 
 ### Pipeline
 - To run pipeline:
 ```bash
 python3 pipeline.py \
 --recording_path sample.webm \
---method paddleocr \
+--method paddle_ocr \
 --step 5
 ```
+
+Where:
+    - `method`: currently supports `paddle_ocr` or `damo_ocr`
+    - `step`: is frame step 
