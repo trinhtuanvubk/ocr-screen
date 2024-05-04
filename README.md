@@ -22,6 +22,9 @@ python3 paddleocr_test.py
 ```
 <!-- Remove MMOCR pipeline because I can not install old and silly packages -->
 
+### DamoOCR
+- Install: just need to install modelscope to download model checkpoint
+- Test: There are no tests right now
 ### Pipeline
 - To run pipeline:
 ```bash
